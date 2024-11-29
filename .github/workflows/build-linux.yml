@@ -26,15 +26,13 @@ jobs:
           mkdir build
           cd build
           cmake \
-            -DCMAKE_INSTALL_PREFIX="/opt/ikos" \
-            -DCMAKE_BUILD_TYPE="Debug" \
+            -DCMAKE_BUILD_TYPE="Release" \
             -DLLVM_CONFIG_EXECUTABLE="/usr/lib/llvm-14/bin/llvm-config" \
             ..
           make
           sudo make install
-      - name: Add IKOS to the path
-        run: |
-          echo "/opt/ikos/bin" >> $GITHUB_PATH
-      - name: Confirm that it runs
-        run: |
-          ikos --version
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ikos-build
+          path: build/
