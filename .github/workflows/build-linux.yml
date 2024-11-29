@@ -27,7 +27,7 @@ jobs:
           mkdir build
           cd build
           cmake \
-            -DCMAKE_INSTALL_PREFIX="/opt/ikos" \
+            -DCMAKE_INSTALL_PREFIX="./install" \
             -DCMAKE_BUILD_TYPE="Release" \
             -DLLVM_CONFIG_EXECUTABLE="/usr/lib/llvm-14/bin/llvm-config" \
             ..
@@ -37,4 +37,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ikos-build
-          path: /opt/ikos/
+          path: build/install
